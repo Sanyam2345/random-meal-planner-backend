@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from sqlalchemy import create_engine, Column, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -29,3 +30,36 @@ def get_db():
     finally:
         db.close()
 
+=======
+from sqlalchemy import create_engine, Column, Integer, String, Text
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+SQLALCHEMY_DATABASE_URL = "sqlite:///./meals.db"
+
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
+class Meal(Base):
+    __tablename__ = "meals"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    ingredients = Column(Text)
+    category = Column(String, index=True)  # breakfast, lunch, dinner
+
+def init_db():
+    Base.metadata.create_all(bind=engine)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+>>>>>>> 2d74c10219954dc9ac16d606db0f25e6bc708a82
