@@ -11,7 +11,7 @@ router = APIRouter(
     tags=["meals"]
 )
 
-@router.post("/", response_model=MealResponse)
+@router.post("", response_model=MealResponse)
 def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
     db_meal = Meal(**meal.model_dump())
     db.add(db_meal)
@@ -19,7 +19,7 @@ def create_meal(meal: MealCreate, db: Session = Depends(get_db)):
     db.refresh(db_meal)
     return db_meal
 
-@router.get("/", response_model=List[MealResponse])
+@router.get("", response_model=List[MealResponse])
 def get_meals(
     skip: int = 0, 
     limit: int = 100, 
