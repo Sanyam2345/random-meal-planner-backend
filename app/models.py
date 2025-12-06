@@ -17,7 +17,6 @@ class Meal(Base):
     prep_time = Column(Integer, default=15) # in minutes
     servings = Column(Integer, default=2)
     calories = Column(Integer, nullable=True)
-    calories = Column(Integer, nullable=True)
     diet_type = Column(String, nullable=True) # veg, non-veg, vegan, keto
 
 class User(Base):
