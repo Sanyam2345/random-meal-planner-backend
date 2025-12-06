@@ -9,7 +9,8 @@ app = FastAPI(title="MealGenie API v2")
 origins = [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://elegant-eclair-c843ed.netlify.app"
+    "https://elegant-eclair-c843ed.netlify.app",
+    "https://daily-meal-generator.netlify.app"
 ]
 
 app.add_middleware(
